@@ -59,7 +59,7 @@ export const photos = {
     position: "50% 45%",
   },
   wallbox: {
-    src: "/obras/wallbox-cartaz.jpg",
+    src: "/obras/wallbox-cartazz.png",
     alt: "Cartaz da NF Elétrica sobre instalação de wallbox: um carro elétrico carregando na garagem ao lado do carregador na parede. Vantagens: carregamento mais rápido e eficiente, mais segurança, valorização do imóvel, mais economia e solução sustentável. Atendimento rápido e agendamento flexível.",
   },
   process: {
