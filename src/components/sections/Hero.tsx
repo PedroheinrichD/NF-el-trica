@@ -35,7 +35,7 @@ export function Hero() {
             preload
             phY="22%"
             sizes="(min-width: 1024px) 40vw, 100vw"
-            className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] lg:max-h-[calc(100dvh-10rem)] lg:w-full"
+            className="aspect-[4/5] sm:aspect-[3/2] lg:aspect-[4/5] lg:max-h-[calc(100dvh-10rem)] lg:w-full"
           />
           <div className="absolute -bottom-6 -left-10 hidden w-[46%] lg:block">
             <Photo

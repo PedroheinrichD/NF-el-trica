@@ -11,8 +11,12 @@ type PhotoProps = {
   sizes: string;
   /** Define proporção ou altura do quadro. */
   className?: string;
+  /** Ponto do recorte da foto (object-position), ex.: "50% 30%". */
+  position?: string;
   /** Preenche o pai (posição absoluta) em vez de ocupar o fluxo. */
   fill?: boolean;
+  /** Sem cantos arredondados (quando o pai já recorta a foto). */
+  square?: boolean;
   /** Foto acima da dobra: pré-carrega para não atrasar o LCP. */
   preload?: boolean;
   /** Camada mais alta que o quadro para o parallax do scroll. */
@@ -42,7 +46,9 @@ export function Photo({
   alt,
   sizes,
   className,
+  position,
   fill,
+  square,
   preload,
   parallax,
   reveal,
@@ -56,7 +62,8 @@ export function Photo({
     <div
       className={cn(
         fill ? "absolute inset-0" : "relative",
-        "overflow-hidden rounded-[var(--radius-card)] bg-surface",
+        "overflow-hidden bg-surface",
+        !square && "rounded-[var(--radius-card)]",
         className,
       )}
       {...(reveal ? { "data-img-reveal": "" } : {})}
@@ -74,6 +81,7 @@ export function Photo({
             sizes={sizes}
             preload={preload}
             className={cn("object-cover", innerClassName)}
+            style={position ? { objectPosition: position } : undefined}
             data-photo-inner=""
           />
         ) : (

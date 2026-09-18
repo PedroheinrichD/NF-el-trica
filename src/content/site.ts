@@ -25,35 +25,52 @@ export const nav = [
 ] as const;
 
 /** Fotos esperadas em /public/obras. Se o arquivo não existir, a página mostra um fallback. */
+export type Picture = {
+  src: string;
+  alt: string;
+  /** Ponto do recorte quando a foto é cortada (object-position), ex.: "50% 30%". */
+  position?: string;
+};
+
 export const photos = {
   hero: {
-    src: "/obras/sala-led-linear.jpg",
-    alt: "Sala integrada com perfil de LED linear embutido no forro",
+    src: "/obras/cozinha-sanca-led.jpg",
+    alt: "Cozinha com parede de porcelanato, três pendentes, sanca de LED quente e LED indireto sob a bancada",
+    position: "50% 38%",
   },
   heroSmall: {
-    src: "/obras/eletricista-quadro.jpg",
-    alt: "Eletricista da NF Elétrica organizando o quadro de distribuição",
+    src: "/obras/sala-led-linear.jpg",
+    alt: "Sala ampla com moldura de LED linear branco no forro e reflexos no piso",
+    position: "50% 30%",
   },
   automation: {
-    src: "/obras/escada-estar.jpg",
-    alt: "Estar e escada com iluminação de forro controlada por automação",
+    src: "/obras/fachada-noturna.jpg",
+    alt: "Fachada de casa à noite com spots embutidos no beiral e LED linear no forro da garagem",
+    position: "50% 62%",
   },
   lighting: {
-    src: "/obras/despensa-led.jpg",
-    alt: "Despensa com fita de LED embutida sob cada prateleira de granito",
+    src: "/obras/forro-perfil-led.jpg",
+    alt: "Forro com perfis de LED linear embutidos formando uma moldura sobre a cozinha",
+    position: "50% 45%",
+  },
+  wallbox: {
+    src: "/obras/wallbox-cartaz.jpg",
+    alt: "Cartaz da NF Elétrica sobre instalação de wallbox: um carro elétrico carregando na garagem ao lado do carregador na parede. Vantagens: carregamento mais rápido e eficiente, mais segurança, valorização do imóvel, mais economia e solução sustentável. Atendimento rápido e agendamento flexível.",
   },
   process: {
-    src: "/obras/eletricista-forro.jpg",
-    alt: "Eletricista da NF Elétrica instalando luminária no forro de uma obra",
+    src: "/obras/banheiro-nicho-led.jpg",
+    alt: "Banheiro com nicho iluminado por LED, banheira e forro com spots embutidos",
+    position: "50% 55%",
   },
-} as const;
+} satisfies Record<string, Picture>;
 
 export type Service = {
   id: string;
   name: string;
   description: string;
-  tone: "image" | "amber" | "pattern" | "surface";
-  image?: { src: string; alt: string };
+  /** image: foto de fundo · poster: arte pronta exibida inteira · pattern e surface: só texto */
+  tone: "image" | "poster" | "pattern" | "surface";
+  image?: Picture;
 };
 
 export const services: Service[] = [
@@ -69,7 +86,8 @@ export const services: Service[] = [
     id: "wallbox",
     name: "Wallbox",
     description: "Carregador de carro elétrico com circuito dedicado e proteção adequada.",
-    tone: "amber",
+    tone: "poster",
+    image: photos.wallbox,
   },
   {
     id: "iluminacao",
@@ -98,44 +116,56 @@ export const services: Service[] = [
   },
 ];
 
-export const works = [
+export type Work = Picture & {
+  caption: string;
+  /** Proporção do quadro, próxima à da foto original para não cortar. */
+  ratio: string;
+};
+
+export const works: Work[] = [
   {
-    src: "/obras/cozinha-marmore.jpg",
-    alt: "Cozinha com porcelanato claro, pendentes e LED indireto sob a bancada",
-    caption: "Cozinha com LED indireto na bancada",
+    src: "/obras/cozinha-moldura-led.jpg",
+    alt: "Cozinha com moldura de LED linear no forro ao redor do pilar, armários escuros e vista para a piscina",
+    caption: "Cozinha com moldura de LED linear",
+    ratio: "aspect-[6/7]",
+  },
+  {
+    src: "/obras/cozinha-led-bancada.jpg",
+    alt: "Cozinha e estar em porcelanato branco com LED indireto sob a bancada refletindo no piso",
+    caption: "LED indireto na bancada e no piso",
+    ratio: "aspect-[3/5]",
+  },
+  {
+    src: "/obras/fachada-noturna.jpg",
+    alt: "Fachada de casa à noite com spots embutidos no beiral e LED linear no forro da garagem",
+    caption: "Fachada com spots e LED linear",
+    ratio: "aspect-[8/7]",
+  },
+  {
+    src: "/obras/banheiro-nicho-led.jpg",
+    alt: "Banheiro com nicho iluminado por LED, banheira e forro com spots embutidos",
+    caption: "Banheiro com nicho iluminado",
     ratio: "aspect-[3/4]",
   },
   {
-    src: "/obras/estar-forro-led.jpg",
-    alt: "Sala de estar com moldura de LED linear no forro e escada ao fundo",
-    caption: "Estar com moldura de LED no forro",
-    ratio: "aspect-[4/5]",
-  },
-  {
-    src: "/obras/fachada.jpg",
-    alt: "Fachada e área externa de uma casa térrea de alto padrão",
-    caption: "Fachada e área externa",
-    ratio: "aspect-[4/3]",
-  },
-  {
-    src: "/obras/despensa-led.jpg",
-    alt: "Despensa com fita de LED embutida sob cada prateleira de granito",
-    caption: "Despensa com LED em cada prateleira",
-    ratio: "aspect-[3/4]",
-  },
-  {
-    src: "/obras/sanca-led.jpg",
-    alt: "Sanca de LED dourada sobre cozinha com ilha em quartzo",
-    caption: "Sanca de LED e pendentes",
-    ratio: "aspect-[4/3]",
+    src: "/obras/forro-perfil-led.jpg",
+    alt: "Forro com perfis de LED linear embutidos formando uma moldura sobre a cozinha",
+    caption: "Forro com perfil de LED linear",
+    ratio: "aspect-[6/7]",
   },
   {
     src: "/obras/sala-led-linear.jpg",
-    alt: "Sala ampla com perfil de LED linear embutido no forro",
-    caption: "Sala com perfil de LED linear",
-    ratio: "aspect-[4/5]",
+    alt: "Sala ampla com moldura de LED linear branco no forro e reflexos no piso",
+    caption: "Sala com moldura de LED no forro",
+    ratio: "aspect-[4/7]",
   },
-] as const;
+  {
+    src: "/obras/cozinha-sanca-led.jpg",
+    alt: "Cozinha com parede de porcelanato, três pendentes, sanca de LED quente e LED indireto sob a bancada",
+    caption: "Cozinha com sanca de LED e pendentes",
+    ratio: "aspect-[3/4]",
+  },
+];
 
 export const steps = [
   {

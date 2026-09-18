@@ -25,21 +25,20 @@ Copie `.env.example` para `.env.local` e ajuste `NEXT_PUBLIC_SITE_URL` para o do
 
 ## Fotos
 
-As fotos não vêm no repositório. Salve os arquivos em `public/obras/` **com estes nomes** e a página passa a usá-los sozinha (sem foto, aparece um fallback escuro com a linha de LED da marca; em `npm run dev` ele mostra o nome do arquivo que falta). Depois de adicionar fotos, rode `npm run build` de novo.
+As fotos ficam em `public/obras/` (JPEG otimizado, cerca de 100 a 170 KB cada). Onde o arquivo não existir, a página mostra um fallback escuro com a linha de LED da marca, e em `npm run dev` ele indica o nome do arquivo que falta. Depois de trocar ou adicionar fotos, rode `npm run build` de novo. Se ao trocar uma foto pelo mesmo nome a antiga continuar aparecendo, apague a pasta `.next` (o Next guarda as imagens otimizadas em cache por algumas horas).
 
-| Arquivo | Onde aparece | Sugestão de foto |
-| --- | --- | --- |
-| `sala-led-linear.jpg` | Hero e galeria | Sala com perfil de LED linear no forro |
-| `eletricista-quadro.jpg` | Hero (foto pequena) | Eletricista no quadro de distribuição |
-| `escada-estar.jpg` | Card de automação | Estar com escada e forro iluminado |
-| `despensa-led.jpg` | Card de iluminação e galeria | Despensa com LED nas prateleiras |
-| `eletricista-forro.jpg` | Seção de processo | Eletricista instalando no forro |
-| `cozinha-marmore.jpg` | Galeria | Cozinha com LED indireto |
-| `estar-forro-led.jpg` | Galeria | Estar com moldura de LED |
-| `fachada.jpg` | Galeria | Fachada e área externa |
-| `sanca-led.jpg` | Galeria | Sanca de LED com pendentes |
+| Arquivo | Onde aparece |
+| --- | --- |
+| `cozinha-sanca-led.jpg` | Hero (foto principal) e galeria |
+| `sala-led-linear.jpg` | Hero (foto pequena) e galeria |
+| `fachada-noturna.jpg` | Card de automação e galeria |
+| `forro-perfil-led.jpg` | Card de iluminação e galeria |
+| `banheiro-nicho-led.jpg` | Seção de processo e galeria |
+| `wallbox-cartaz.jpg` | Card do wallbox (só ele; a arte aparece inteira, sem corte, em proporção 1089x1444) |
+| `cozinha-moldura-led.jpg` | Galeria |
+| `cozinha-led-bancada.jpg` | Galeria |
 
-Use as originais (largura mínima de 1600px). Prints do Instagram têm pouca resolução e ficam borrados nos cards grandes. Para trocar o texto alternativo ou incluir mais obras, edite `photos` e `works` em `src/content/site.ts`.
+Para trocar uma foto, salve a nova com o mesmo nome. Para incluir mais obras, adicione a imagem na pasta e uma entrada em `works` (ou ajuste `photos`) em `src/content/site.ts`. Cada foto tem `alt` (texto para leitores de tela), `position` (ponto do recorte, ex.: `"50% 30%"`) e, na galeria, `ratio` (proporção do quadro). Use fotos originais com pelo menos 1600px de largura; prints do Instagram ficam borrados nos cards grandes. Seria ótimo ter também uma foto de um eletricista trabalhando (por exemplo no quadro de distribuição) para a seção de processo.
 
 ## Depoimentos
 
