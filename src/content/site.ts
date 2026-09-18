@@ -13,7 +13,12 @@ export const business = {
     handle: "@n.f__eletrica",
     url: "https://www.instagram.com/n.f__eletrica/",
   },
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // Domínio próprio (NEXT_PUBLIC_SITE_URL) > domínio de produção da Vercel > localhost
+  siteUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
 } as const;
 
 export const nav = [
